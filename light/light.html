@@ -17,7 +17,7 @@
 	</div>
 	<div class="lightsenser">
 		<span>
-			LED¶}Ãö;
+			LEDé–‹é—œ;
 		</span>
 		<span id="tf"></span>
 	</div>
@@ -38,11 +38,11 @@
 			console.log(light);
 			if (light < 500) {
 				cpf.request('["digitalWrite", 7, 1]');
-				document.getElementById("tf").innerHTML = "¶}";
+				document.getElementById("tf").innerHTML = "é–‹";
 			}
 			else {
 				cpf.request('["digitalWrite", 7, 0]');
-				document.getElementById("tf").innerHTML = "Ãö";
+				document.getElementById("tf").innerHTML = "é—œ";
 			}
 		}
 		setTimeout(loop, 1000);
