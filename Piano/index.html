@@ -1,62 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
-    <link rel="stylesheet" href="main.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.css">
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-    <title>指針溫度計</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+    <title>Piano</title>
 </head>
+
 <body>
-    <h1>指針溫度計</h1>>
-    <div class="container">
-     
-        <div class="col-xs-12">
+    <div class="wrap">
+        <button class="pbtn btn btn-light" id="do" onclick="ckevent(this)" name="523">
+            Do
+        </button>
+        <button class="pbtn btn btn-dark" id="re" onclick="ckevent(this)" name="587">
+            Re
+        </button>
+        <button class="pbtn btn btn-light" id="mi" onclick="ckevent(this)" name="659">
+            Mi
+        </button>
+        <button class="pbtn btn btn-dark" id="fa" onclick="ckevent(this)" name="698">
+            Fa
+        </button>
+        <button class="pbtn btn btn-light" id="so" onclick="ckevent(this)" name="784">
+            So
+        </button>
+        <button class="pbtn btn btn-dark" id="la" onclick="ckevent(this)" name="880">
+            La
+        </button>
+        <button class="pbtn btn btn-light" id="si" onclick="ckevent(this)" name="988">
+            Si
+        </button>
+        <button class="pbtn btn btn-dark" id="hdo" onclick="ckevent(this)" name="1046">
+            Do
+        </button>
+        <button onclick="happysong()" class="btn btn-danger btn-lg">快樂頌</button>
+    </div>
 
-            <div class="images">
-                
-                <img id="thermometer" src="img/thermometer.png">
-                <img id="pointer" src="img/pointer.png">
-            </div>
-        
-            <br/>
-            <h3>Degree:<span id="degree">none</span>°</h3>
-            <h3>Temperature: <span id="temp">none</span>°C</h3>
-
-        </div>
-
-</div>>
-<script>
-    var celsius=0;
-    var degree =0;
-    setup();
-
-    function loop(){
-        if(cpf){
-            tempdata = cpf.get("temperature sensor");
-            celsius = tocelsius(tempdata);
-            document.getelementbyid("temp").innerHTML = celsius;
+    <script>
+        setup();
+        function setup() {
+            if (cpf) {
+                cpf.setPinMode('["resetPin"],["setPinMode", "digital", 6, "TONE"] ');
+            }
         }
-        setTimeout(loop,1000);
-    }
-    loop();
-
-    function tocelsius(value){
-        var resistance= parseFloat((1023-value)*10000 / value);
-        var temperature = 1/(math.log(resistance/10000)/3975+1/298.15)-273.15;
-        return temperture.toFixed(2);
-    }
-
-    function setup(){
-        if(cpf){
-            cpf.setPinMode('["resetPin"],["setPinMode","analog",1,"INPUT"],["setPinMpde","digital",4,SERVO"]')
+        function ckevent(event) { 
+            var a = event.name;
+            console.log(a);
+            console.log(event.id);
+            if (cpf) {
+                cpf.request(`["tone_play", 6, ${a}, 300]`);
+            }
+            console.log(`["tone_play", 6, ${a}, 300]`);
         }
-    }
-    
-</script>
-
+        function happysong() {
+            console.log('happysong');
+            if (cpf) {
+                cpf.request('["tone_play", 6, 659, 300],["sleep", 500],["tone_play", 6, 659, 300],["sleep", 500],["tone_play", 6, 698, 300],["sleep", 500], ["tone_play", 6, 784, 300],["sleep", 500],["tone_play", 6, 784, 300],["sleep", 500],["tone_play", 6, 698, 300],["sleep", 500], ["tone_play", 6, 659, 300],["sleep", 500],["tone_play", 6, 587, 300],["sleep", 500],["tone_play", 6, 523, 300],["sleep", 500],["tone_play", 6, 523, 300],["sleep", 500],["tone_play", 6, 587, 300],["sleep", 500],["tone_play", 6, 659, 300],["sleep", 500],["tone_play", 6, 659, 300],["sleep", 500], ["tone_play", 6, 587, 300],["sleep", 500],["tone_play", 6, 587, 300]');                
+            }
+        }
+        //523 - Do
+        //587 - Re
+        //659 - Mi
+        //698 - Fa
+        //784 - So
+        //880 - La
+        //988 - Si
+        //1046 - Do
+    </script>
 </body>
+
 </html>
