@@ -38,6 +38,8 @@
             Do
         </button>
         <button onclick="toalice()" class="btn btn-danger btn-lg">給愛麗絲</button>
+        <button onclick="marysheep()" class="btn btn-danger btn-lg">瑪莉小綿羊</button>
+
     </div>
 
     <script>
@@ -61,6 +63,12 @@
             if (cpf) {
                 //cpf.request('["tone_play", 6, 659, 300],["sleep", 500],["tone_play", 6, 659, 300],["sleep", 500],["tone_play", 6, 698, 300],["sleep", 500], ["tone_play", 6, 784, 300],["sleep", 500],["tone_play", 6, 784, 300],["sleep", 500],["tone_play", 6, 698, 300],["sleep", 500], ["tone_play", 6, 659, 300],["sleep", 500],["tone_play", 6, 587, 300],["sleep", 500],["tone_play", 6, 523, 300],["sleep", 500],["tone_play", 6, 523, 300],["sleep", 500],["tone_play", 6, 587, 300],["sleep", 500],["tone_play", 6, 659, 300],["sleep", 500],["tone_play", 6, 659, 300],["sleep", 500], ["tone_play", 6, 587, 300],["sleep", 500],["tone_play", 6, 587, 300]');                
                 cpf.request('["tone_play", 6, 880, 300],["sleep", 500],["tone_play", 6, 784, 300],["sleep", 500],["tone_play", 6, 880, 300],["sleep", 500],["tone_play", 6, 784, 300],["sleep", 500],["tone_play", 6, 880, 300],["sleep", 500],["tone_play", 6, 659, 300],["sleep", 500],["tone_play", 6, 784, 300],["sleep", 500],["tone_play", 6, 698, 300],["sleep", 500],["tone_play", 6, 587, 300],["sleep", 500]');
+            }
+        }
+        function marysheep(){
+            console.log('marysheep');
+            if(cpf){
+                cpf.request('["tone_play", 6,988 , 300],["sleep", 500],["tone_play", 6,880 , 300],["sleep", 500],["tone_play", 6,784 , 300],["sleep", 500],["tone_play", 6, 880, 300],["sleep", 500],["tone_play", 6,988 , 300],["sleep", 500],["tone_play", 6,988 , 300],["sleep", 500],["tone_play", 6,988 , 300],["sleep", 500],["tone_play", 6, 880, 300],["sleep", 500],["tone_play", 6, 880, 300],["sleep", 500],["tone_play", 6,880 , 300],["sleep", 500],["tone_play", 6, 988, 300],["sleep", 500],["tone_play", 6, 988, 300],["sleep", 500],["tone_play", 6,988 , 300],["sleep", 500],["tone_play", 6, , 300],["sleep", 500],["tone_play", 6,880 , 300],["sleep", 500],["tone_play", 6, 784, 300],["sleep", 500],["tone_play", 6,880 , 300],["sleep", 500],["tone_play", 6, 988, 300],["s988leep", 500],["tone_play", 6,988 , 300],["sleep", 500],["tone_play", 6,988 , 300],["sleep", 500],["tone_play", 6, 880, 300],["sleep", 500],["tone_play", 6,880 , 300],["sleep", 500],["tone_play", 6, 988, 300],["sleep", 500],["tone_play", 6,880 , 300],["sleep", 500],["tone_play", 6, 784, 300],["sleep", 500]');
             }
         }
         //523 - Do
