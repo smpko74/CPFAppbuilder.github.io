@@ -37,7 +37,7 @@
         <button class="pbtn btn btn-dark" id="hdo" onclick="ckevent(this)" name="1046">
             Do
         </button>
-        <button onclick="happysong()" class="btn btn-danger btn-lg">快樂頌</button>
+        <button onclick="toalice()" class="btn btn-danger btn-lg">給愛麗絲</button>
     </div>
 
     <script>
@@ -56,10 +56,11 @@
             }
             console.log(`["tone_play", 6, ${a}, 300]`);
         }
-        function happysong() {
-            console.log('happysong');
+        function toalice() {
+            console.log('toalice');
             if (cpf) {
-                cpf.request('["tone_play", 6, 659, 300],["sleep", 500],["tone_play", 6, 659, 300],["sleep", 500],["tone_play", 6, 698, 300],["sleep", 500], ["tone_play", 6, 784, 300],["sleep", 500],["tone_play", 6, 784, 300],["sleep", 500],["tone_play", 6, 698, 300],["sleep", 500], ["tone_play", 6, 659, 300],["sleep", 500],["tone_play", 6, 587, 300],["sleep", 500],["tone_play", 6, 523, 300],["sleep", 500],["tone_play", 6, 523, 300],["sleep", 500],["tone_play", 6, 587, 300],["sleep", 500],["tone_play", 6, 659, 300],["sleep", 500],["tone_play", 6, 659, 300],["sleep", 500], ["tone_play", 6, 587, 300],["sleep", 500],["tone_play", 6, 587, 300]');                
+                //cpf.request('["tone_play", 6, 659, 300],["sleep", 500],["tone_play", 6, 659, 300],["sleep", 500],["tone_play", 6, 698, 300],["sleep", 500], ["tone_play", 6, 784, 300],["sleep", 500],["tone_play", 6, 784, 300],["sleep", 500],["tone_play", 6, 698, 300],["sleep", 500], ["tone_play", 6, 659, 300],["sleep", 500],["tone_play", 6, 587, 300],["sleep", 500],["tone_play", 6, 523, 300],["sleep", 500],["tone_play", 6, 523, 300],["sleep", 500],["tone_play", 6, 587, 300],["sleep", 500],["tone_play", 6, 659, 300],["sleep", 500],["tone_play", 6, 659, 300],["sleep", 500], ["tone_play", 6, 587, 300],["sleep", 500],["tone_play", 6, 587, 300]');                
+                cpf.request('["tone_play", 6, 880, 300],["sleep", 500],["tone_play", 6, 784, 300],["sleep", 500],["tone_play", 6, 880, 300],["sleep", 500],["tone_play", 6, 784, 300],["sleep", 500],["tone_play", 6, 880, 300],["sleep", 500],["tone_play", 6, 659, 300],["sleep", 500],["tone_play", 6, 784, 300],["sleep", 500],["tone_play", 6, 698, 300],["sleep", 500],["tone_play", 6, 587, 300],["sleep", 500]');
             }
         }
         //523 - Do
