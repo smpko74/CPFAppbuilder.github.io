@@ -5,8 +5,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-        crossorigin="anonymous">
-    <title>Piano</title>
+    <title>LCD</title>
 </head>
+
+<body>
+    <h1>LCD</h1>
+    <button id="clickbtn">呼叫AI</button>
+    <br/>
+    <p id="words">none</p>
+
+    <p id="light">light</p>
+    <br/>
+    <div class="col-xs-4">
+        <div class="form-group">
+              <select id="city" class="form-control">
+                  <option value="choose">請選擇</option>
+              </select>
+        </div>
+    </div>
+    <div class="col-xs-4">
+        <div class="form-group">
+              <select id="area" class="form-control">
+                  <option value="choose">請選擇</option>
+              </select>
+        </div>
+</div>
+
+<script>
+    if (Result.includes("呼吸燈")) {
+            cpf.request('["grove_rgblcd_set_rgb", 0, 0, 255]'); //blue
+            cpf.request('["grove_rgblcd_clear"]');
+            cpf.request('["grove_rgblcd_print", 0, 0, "light on"]');
+            document.getElementById("words").innerHTML = Result;
+            i = 0;
+            ForLoop();
+            cpf.SetSpeech("Off", "cmn-Hant-TW", Result, 1, 2);
+    }
+</script>
