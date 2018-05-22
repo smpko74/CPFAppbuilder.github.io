@@ -31,12 +31,27 @@
                 cpf.SetSpeech("On", "cmn-Hant-TW", "已幫您關電扇了", 1, 1);
                 cpf.request('["analogWrite", 6, 0]'); //停止風扇
             }
-        }
+            if (Result.includes("瑪莉小綿羊")|| Result.includes("即將撥出")) {
+                document.getElementById("words").innerHTML = Result;
+                cpf.SetSpeech("On", "cmn-Hant-TW", "瑪莉小綿羊來囉", 1, 1);
+                cpf.request('["digitalWrite", 5, 1]');
+                cpf.request('["tone_play", 6,988 , 300],["sleep", 500],["tone_play", 6,880 , 300],["sleep", 500],["tone_play", 6,784 , 300],["sleep", 500],["tone_play", 6, 880, 300],["sleep", 500],["tone_play", 6,988 , 300],["sleep", 500],["tone_play", 6,988 , 300],["sleep", 500],["tone_play", 6,988 , 300],["sleep", 1000],["tone_play", 6, 880, 300],["sleep", 500],["tone_play", 6, 880, 300],["sleep", 500],["tone_play", 6,880 , 300],["sleep", 1000],["tone_play", 6, 988, 300],["sleep", 500],["tone_play", 6, 988, 300],["sleep", 500],["tone_play", 6,988 , 300],["sleep", 1000],["tone_play", 6,988 , 300],["sleep", 500],["tone_play", 6,880 , 300],["sleep", 500],["tone_play", 6, 784, 300],["sleep", 500],["tone_play", 6,880 , 300],["sleep", 500],["tone_play", 6, 988, 300],["sleep", 500],["tone_play", 6,988 , 300],["sleep", 500],["tone_play", 6,988 , 300],["sleep", 1000],["tone_play", 6, 880, 300],["sleep", 500],["tone_play", 6,880 , 300],["sleep", 500],["tone_play", 6, 988, 300],["sleep", 500],["tone_play", 6,880 , 300],["sleep", 500],["tone_play", 6, 784, 300],["sleep", 500]');
+            }
+                
+             else if (Result.includes("不想聽了") || Result.includes("那就不要聽")) {
+                document.getElementById("words").innerHTML = Result;
+                cpf.SetSpeech("On", "cmn-Hant-TW", "那就不要聽", 1, 1);
+                cpf.request('["analogWrite", 5, 0]'); //停止風扇
+            }
+        
         function setup() {
             if (cpf)
                 cpf.setPinMode('["resetPin"], ["setPinMode", "digital", 6, "PWM"]');
+            if (cpf) {
+                cpf.setPinMode('["resetPin"],["setPinMode", "digital", 5, "TONE"] ');
+            }
         }
-        
+        }
     </script>
 </body>
 </html>
