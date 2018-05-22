@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Control Your Fan !</title>
+</head>
+<body>
+    <h1>Control Your Fan</h1>
+    <button id="clickbtn">呼叫AI!!!</button>
+    <br/>
+    <p id="words">none</p>
+    
+    <script>
+        var clickbtn = document.getElementById("clickbtn");
+        setup();
+        cpf.request('["analogWrite", 6, 0]');
+        clickbtn.addEventListener('click', function (event) {
+            cpf.initSpeechRecognition("cmn-Hant-TW");
+        });
+        function GetRecognizeResult(Result, Type) {
+            if (Result.includes("好熱")|| Result.includes("我知道你熱")) {
+                document.getElementById("words").innerHTML = Result;
+                cpf.SetSpeech("On", "cmn-Hant-TW", "風扇來囉", 1, 2);
+                for (i = 0; i < 255; i += 10) {  //風扇漸快
+                    cpf.request('["analogWrite", 6, ' + i + ']');
+                }
+            } else if (Result.includes("好冷") || Result.includes("如果你冷")) {
+                document.getElementById("words").innerHTML = Result;
+                cpf.SetSpeech("On", "cmn-Hant-TW", "已幫您關電扇了", 1, 1);
+                cpf.request('["analogWrite", 6, 0]'); //停止風扇
+            }
+            if (Result.includes("瑪莉小綿羊")|| Result.includes("即將撥出")) {
+                document.getElementById("words").innerHTML = Result;
+                cpf.SetSpeech("On", "cmn-Hant-TW", "瑪莉小綿羊來囉", 1, 1);
+                cpf.request('["digitalWrite", 5, 1]');
+                cpf.request('["tone_play", 6,988 , 300],["sleep", 500],["tone_play", 6,880 , 300],["sleep", 500],["tone_play", 6,784 , 300],["sleep", 500],["tone_play", 6, 880, 300],["sleep", 500],["tone_play", 6,988 , 300],["sleep", 500],["tone_play", 6,988 , 300],["sleep", 500],["tone_play", 6,988 , 300],["sleep", 1000],["tone_play", 6, 880, 300],["sleep", 500],["tone_play", 6, 880, 300],["sleep", 500],["tone_play", 6,880 , 300],["sleep", 1000],["tone_play", 6, 988, 300],["sleep", 500],["tone_play", 6, 988, 300],["sleep", 500],["tone_play", 6,988 , 300],["sleep", 1000],["tone_play", 6,988 , 300],["sleep", 500],["tone_play", 6,880 , 300],["sleep", 500],["tone_play", 6, 784, 300],["sleep", 500],["tone_play", 6,880 , 300],["sleep", 500],["tone_play", 6, 988, 300],["sleep", 500],["tone_play", 6,988 , 300],["sleep", 500],["tone_play", 6,988 , 300],["sleep", 1000],["tone_play", 6, 880, 300],["sleep", 500],["tone_play", 6,880 , 300],["sleep", 500],["tone_play", 6, 988, 300],["sleep", 500],["tone_play", 6,880 , 300],["sleep", 500],["tone_play", 6, 784, 300],["sleep", 500]');
+            }
+                
+             else if (Result.includes("不想聽了") || Result.includes("那就不要聽")) {
+                document.getElementById("words").innerHTML = Result;
+                cpf.SetSpeech("On", "cmn-Hant-TW", "那就不要聽", 1, 1);
+                cpf.request('["analogWrite", 5, 0]');
+            }
+        
+        function setup() {
+            if (cpf)
+                cpf.setPinMode('["resetPin"], ["setPinMode", "digital", 6, "PWM"]');
+            if (cpf) {
+                cpf.setPinMode('["resetPin"],["setPinMode", "digital", 5, "TONE"] ');
+            }
+        }
+        }
+    </script>
+</body>
+</html>
