@@ -8,7 +8,7 @@
 </head>
 <body>
     <h1>Control Your Fan</h1>
-    <button id="clickbtn">呼叫AI!2</button>
+    <button id="clickbtn">呼叫AI!A2</button>
     <br/>
     <p id="words">none</p>
     
@@ -20,19 +20,7 @@
             cpf.initSpeechRecognition("cmn-Hant-TW");
         });
         function GetRecognizeResult(Result, Type) {
-            if (Result.includes("好熱")|| Result.includes("我知道你熱")) {
-                document.getElementById("words").innerHTML = Result;
-                cpf.SetSpeech("On", "cmn-Hant-TW", "風扇來囉", 1, 2);
-                for (i = 0; i < 255; i += 10) {  //風扇漸快
-                    cpf.request('["analogWrite", 6, ' + i + ']');
-                }
-             }
-             if (Result.includes("好冷") || Result.includes("如果你冷")) {
-                document.getElementById("words").innerHTML = Result;
-                cpf.SetSpeech("On", "cmn-Hant-TW", "已幫您關電扇了", 1, 1);
-                cpf.request('["analogWrite", 6, 0]'); //停止風扇
-            }
-
+            
             if (Result.includes("關燈") || Result.includes("好")) {
                 document.getElementById("words").innerHTML = Result;
                 cpf.SetSpeech("On", "cmn-Hant-TW", "以幫您關燈", 1, 1);
@@ -41,19 +29,18 @@
                 for (i = 0; i <= 255; i += 15) {
                     cpf.request(`["analogWrite", 5, ${i}]`);
                 }
-            
            }
            if (Result.includes("開燈") || Result.includes("已開")) {
                 document.getElementById("words").innerHTML = Result;
                 cpf.SetSpeech("On", "cmn-Hant-TW", "以幫您開燈", 1, 1);
-                cpf.request('["digitalWrite", 5, 0]');
+                cpf.request('["digitalWrite", 5, 1]');
                 cpf.request('["analogWrite", 5, 0]');
                 cpf.request('["grove_setColorRGB", 0, 255, 255, 255]');
             }
         }
         function setup() {
             if (cpf)
-            cpf.setPinMode('["resetPin"], ["setPinMode", "digital", 6, "PWM"], ["grove_rgblcd_begin", 16, 2],["grove_newChainableLED", 7, 8, 1], ["setPinMode", "digital", 5, "OUTPUT"]');
+            cpf.setPinMode('["resetPin"], ["grove_rgblcd_begin", 16, 2],["grove_newChainableLED", 7, 8, 1], ["setPinMode", "digital", 5, "OUTPUT"]');
                 cpf.request('["grove_rgblcd_set_rgb", 255, 0, 0]');
                 cpf.request('["grove_rgblcd_clear"]');
         }
