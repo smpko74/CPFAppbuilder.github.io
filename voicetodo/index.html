@@ -8,7 +8,7 @@
 </head>
 <body>
     <h1>Control Your Fan</h1>
-    <button id="clickbtn">呼叫AI!A2</button>
+    <button id="clickbtn">呼叫AI3</button>
     <br/>
     <p id="words">none</p>
     
@@ -36,6 +36,16 @@
                 cpf.request('["digitalWrite", 5, 1]');
                 cpf.request('["analogWrite", 5, 0]');
                 cpf.request('["grove_setColorRGB", 0, 255, 255, 255]');
+            }
+            if (Result.includes("快開燈")) {
+                document.getElementById("words").innerHTML = "白色";
+                cpf.request('["grove_setColorRGB", 0, 255, 255, 255]');
+                lightstatus = !lightstatus;
+            }
+            else if (Result.includes("快關燈")) {
+                document.getElementById("words").innerHTML = "黑色";
+                cpf.request('["grove_setColorRGB", 0, 0, 0, 0]');
+                lightstatus = !lightstatus;
             }
         }
         function setup() {
