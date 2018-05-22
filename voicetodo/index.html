@@ -8,7 +8,7 @@
 </head>
 <body>
     <h1>Control Your Fan</h1>
-    <button id="clickbtn">呼叫AI</button>
+    <button id="clickbtn">呼叫AI!</button>
     <br/>
     <p id="words">none</p>
     
@@ -31,27 +31,32 @@
                 cpf.SetSpeech("On", "cmn-Hant-TW", "已幫您關電扇了", 1, 1);
                 cpf.request('["analogWrite", 6, 0]'); //停止風扇
             }
-            if (Result.includes("瑪莉小綿羊")|| Result.includes("即將撥出")) {
+            if (Result.includes("關燈") || Result.includes("好")) {
                 document.getElementById("words").innerHTML = Result;
-                cpf.SetSpeech("On", "cmn-Hant-TW", "瑪莉小綿羊來囉", 1, 1);
+                cpf.SetSpeech("On", "cmn-Hant-TW", "以幫您關燈", 1, 1);
+                console.log("close");
                 cpf.request('["digitalWrite", 5, 1]');
-                cpf.request('["tone_play", 6,988 , 300],["sleep", 500],["tone_play", 6,880 , 300],["sleep", 500],["tone_play", 6,784 , 300],["sleep", 500],["tone_play", 6, 880, 300],["sleep", 500],["tone_play", 6,988 , 300],["sleep", 500],["tone_play", 6,988 , 300],["sleep", 500],["tone_play", 6,988 , 300],["sleep", 1000],["tone_play", 6, 880, 300],["sleep", 500],["tone_play", 6, 880, 300],["sleep", 500],["tone_play", 6,880 , 300],["sleep", 1000],["tone_play", 6, 988, 300],["sleep", 500],["tone_play", 6, 988, 300],["sleep", 500],["tone_play", 6,988 , 300],["sleep", 1000],["tone_play", 6,988 , 300],["sleep", 500],["tone_play", 6,880 , 300],["sleep", 500],["tone_play", 6, 784, 300],["sleep", 500],["tone_play", 6,880 , 300],["sleep", 500],["tone_play", 6, 988, 300],["sleep", 500],["tone_play", 6,988 , 300],["sleep", 500],["tone_play", 6,988 , 300],["sleep", 1000],["tone_play", 6, 880, 300],["sleep", 500],["tone_play", 6,880 , 300],["sleep", 500],["tone_play", 6, 988, 300],["sleep", 500],["tone_play", 6,880 , 300],["sleep", 500],["tone_play", 6, 784, 300],["sleep", 500]');
+                cpf.request('["grove_setColorRGB", 0, 0, 0, 0]');
+                for (i = 0; i <= 255; i += 15) {
+                    cpf.request(`["analogWrite", 6, ${i}]`);
+                }
             }
-                
-             else if (Result.includes("不想聽了") || Result.includes("那就不要聽")) {
+            else if (Result.includes("開燈") || Result.includes("已開")) {
                 document.getElementById("words").innerHTML = Result;
-                cpf.SetSpeech("On", "cmn-Hant-TW", "那就不要聽", 1, 1);
-                cpf.request('["analogWrite", 5, 0]'); //停止風扇
+                cpf.SetSpeech("On", "cmn-Hant-TW", "以幫您開燈", 1, 1);
+                console.log("open");
+                cpf.request('["digitalWrite", 5, 0]');
+                cpf.request('["analogWrite", 6, 0]');
+                cpf.request('["grove_setColorRGB", 0, 255, 255, 255]');
             }
-        
+        }
         function setup() {
             if (cpf)
-                cpf.setPinMode('["resetPin"], ["setPinMode", "digital", 6, "PWM"]');
-            if (cpf) {
-                cpf.setPinMode('["resetPin"],["setPinMode", "digital", 5, "TONE"] ');
-            }
+            cpf.setPinMode('["resetPin"], ["setPinMode", "digital", 6, "PWM"], ["grove_rgblcd_begin", 16, 2],["grove_newChainableLED", 7, 8, 1], ["setPinMode", "digital", 5, "OUTPUT"]');
+                cpf.request('["grove_rgblcd_set_rgb", 255, 0, 0]');
+                cpf.request('["grove_rgblcd_clear"]');
         }
-        }
+        
     </script>
 </body>
 </html>
