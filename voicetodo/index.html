@@ -37,12 +37,12 @@
                 cpf.request('["analogWrite", 5, 0]');
                 cpf.request('["grove_setColorRGB", 0, 255, 255, 255]');
             }
-            if (Result.includes("快開燈")) {
+            if (Result.includes("現在開燈")) {
                 document.getElementById("words").innerHTML = "白色";
                 cpf.request('["grove_setColorRGB", 0, 255, 255, 255]');
                 lightstatus = !lightstatus;
             }
-            else if (Result.includes("快關燈")) {
+            else if (Result.includes("現在關燈")) {
                 document.getElementById("words").innerHTML = "黑色";
                 cpf.request('["grove_setColorRGB", 0, 0, 0, 0]');
                 lightstatus = !lightstatus;
