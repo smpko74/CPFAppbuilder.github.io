@@ -8,7 +8,7 @@
 </head>
 <body>
     <h1>Control Your Fan</h1>
-    <button id="clickbtn">呼叫AI1</button>
+    <button id="clickbtn">呼叫AI</button>
     <br/>
     <p id="words">none</p>
     
@@ -41,13 +41,12 @@
             else if (Result.includes("藍色")) {
                 document.getElementById("words").innerHTML = "藍色";
                 cpf.request('["grove_setColorRGB", 0, 0, 0, 255]');
+                console.log("藍色");
             }
         }
         function setup() {
             if (cpf) {
-                cpf.setPinMode('["resetPin"], ["setPinMode", "digital", 6, "PWM"],["grove_newChainableLED", 7, 8, 1]');
-                cpf.request('["grove_rgblcd_set_rgb", 255, 0, 0]');
-                cpf.request('["grove_rgblcd_clear"]');
+                cpf.setPinMode('["resetPin"], ["setPinMode", "digital", 6, "PWM"],["grove_newChainableLED",7, 8, 1]');
             }
         }
     </script>
