@@ -15,7 +15,6 @@
     <script>
         var clickbtn = document.getElementById("clickbtn");
         setup();
-        cpf.request('["analogWrite", 6, 0]');
         clickbtn.addEventListener('click', function (event) {
             cpf.initSpeechRecognition("cmn-Hant-TW");
         });
