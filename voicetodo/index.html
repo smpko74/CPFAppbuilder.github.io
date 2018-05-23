@@ -8,7 +8,7 @@
 </head>
 <body>
     <h1>Control Your Fan</h1>
-    <button id="clickbtn">呼叫AI</button>
+    <button id="clickbtn">呼叫AI1</button>
     <br/>
     <p id="words">none</p>
     
@@ -33,17 +33,14 @@
             if (Result.includes("紅色")) {
                 document.getElementById("words").innerHTML = "紅色";
                 cpf.request('["grove_setColorRGB", 0, 255, 0, 0]');
-                lightstatus = !lightstatus;
             }
             else if (Result.includes("綠色")) {
                 document.getElementById("words").innerHTML = "綠色";
                 cpf.request('["grove_setColorRGB", 0, 0, 255, 0]');
-                lightstatus = !lightstatus;
             }
             else if (Result.includes("藍色")) {
                 document.getElementById("words").innerHTML = "藍色";
                 cpf.request('["grove_setColorRGB", 0, 0, 0, 255]');
-                lightstatus = !lightstatus;
             }
         }
         function setup() {
