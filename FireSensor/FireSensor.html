@@ -1,36 +1,61 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<title>FireSensor</title>
 	<meta charset="utf-8">
 	<link rel="stylesheet" type="text/css" href="style.css">
-
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	 crossorigin="anonymous">
 </head>
+
 <body>
-	<div id="title"> Fire Sensing1845 </div>
-	<div class="FireSensor">
-		<span>
-			馬達開關
-		</span>
-		<span id="tf"></span>
+	<div id="title" class="nav">
+		<h1 class="mx-auto">
+			Fire Sensing1845
+		</h1>
 	</div>
+	<div class="col-md-12">
+		<div class="row container">
+			<div class="row">
+				<div class="card col-sm-4" style="width: 18rem;">
+					<img class="card-img-top" alt="Card image cap" src="img/FireSensor.png" alt="">
+					<div class="card-body">
+						<h5 class="card-title">火:</h5>
+						<p id="fireA" class="card-text">none</p>
+					</div>
+				</div>
+				<div class="card col-sm-4" style="width: 18rem;">
+					<img class="card-img-top" alt="Card image cap" src="img/temp.png" alt="">
+					<div class="card-body">
+						<h5 class="card-title">溫度:</h5>
+						<p id="tempA" class="card-text">none</p>
+					</div>
+				</div>
+				<div class="card col-sm-4" style="width: 18rem;">
+					<img class="card-img-top" alt="Card image cap" src="img/humi.png" alt="">
+					<div class="card-body">
+						<h5 class="card-title">濕度:</h5>
+						<p id="humiA" class="card-text">none</p>
+					</div>
+				</div>
+				<span>
+					馬達開關:
+				</span>
+				<span id="tf">none</span>
+			</div>
+		</div>
+	</div>
+
 	<div class="firesensor">
-			<span>火</span>
-		<span id="fireA"></span>
-		<span>溫度</span>
-		<span id="tempA"></span>
-		<span>濕度</span>
-		<span id="humiA"></span>
-		<span>
-			<img src="img/FireSensor.png" alt="">;
-		</span>
+
 	</div>
 </body>
 
 <script>
 	var fire;
-	var temp ;
-	var humi ;
+	var temp;
+	var humi;
 	setup();
 	function setup() {
 		if (cpf) {
@@ -41,12 +66,12 @@
 		if (cpf) {
 			fire = cpf.get("d5");
 			document.getElementById("fireA").innerHTML = fire;
-			temp = cpf.get("DHT11","d7","dht11temp");
+			temp = cpf.get("DHT11", "d7", "dht11temp");
 			document.getElementById("tempA").innerHTML = temp;
-			humi = cpf.get("DHT11","d7","dht11humi");
+			humi = cpf.get("DHT11", "d7", "dht11humi");
 			document.getElementById("humiA").innerHTML = humi;
 			console.log(fire);
-			if (fire == 50) {
+			if (fire == 0) {
 				cpf.request('["digitalWrite", 7, 1]');
 			}
 			else {
