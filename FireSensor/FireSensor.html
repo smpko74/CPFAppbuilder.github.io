@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>FireSensor1619</title>
+	<title>FireSensor</title>
 	<meta charset="utf-8">
 	<link rel="stylesheet" type="text/css" href="style.css">
 
 </head>
 <body>
-	<div id="title"> Fire Sensing </div>
+	<div id="title"> Fire Sensing1627 </div>
 	<div class="FireSensor">
 		<span>
 			馬達開關
@@ -33,6 +33,7 @@
 	function loop() {
 		if (cpf) {
 			fire = cpf.get("d5");
+			document.getElementById("fire").innerHTML = fire;
 			cpf.get("DHT11","d7","dht11temp");
 			cpf.get("DHT11","d7","dht11humi");
 			console.log(fire);
