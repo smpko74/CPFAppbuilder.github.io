@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>CPF-Coaster</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="style.css">
+
+</head>
+<body>
+	<div id="title"> Fire Sensing </div>
+	<br>
+	<div class="FireSensor">
+		<span>
+			<img src="img/FireSensor.png" alt="">;
+		</span>
+		<span id="Fire"></span>
+	</div>
+	<div class="FireSensor">
+		<span>
+			馬達開關
+		</span>
+		<span id="tf"></span>
+	</div>
+</body>
+
+<script>
+	var fire;
+	setup();
+	function setup() {
+		if (cpf) {
+			cpf.setPinMode('["resetPin"],["setPinMode", "analog", 0, "INPUT"],["setPinMode","digital", 7, "OUTPUT"]')
+		}
+	}
+	function loop() {
+		if (cpf) {
+			fire = cpf.get("a0");
+			console.log(fire);
+			if (fire == LOW) {
+				cpf.request('["digitalWrite", 7, 1]');
+			}
+			else {
+				cpf.request('["digitalWrite", 7, 0]');
+			}
+		}
+	}
+	loop();
+</script>
+
+</html>
