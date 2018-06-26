@@ -41,9 +41,9 @@
 		if (cpf) {
 			fire = cpf.get("d5");
 			document.getElementById("fireA").innerHTML = fire;
-			cpf.get("DHT11","d7","dht11temp");
+			temp = cpf.get("DHT11","d7","dht11temp");
 			document.getElementById("tempA").innerHTML = temp;
-			cpf.get("DHT11","d7","dht11humi");
+			humi = cpf.get("DHT11","d7","dht11humi");
 			document.getElementById("humiA").innerHTML = humi;
 			console.log(fire);
 			if (fire == 50) {
