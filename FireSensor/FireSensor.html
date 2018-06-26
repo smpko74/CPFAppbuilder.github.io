@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>FireSensor</title>
+	<title>FireSensor1619</title>
 	<meta charset="utf-8">
 	<link rel="stylesheet" type="text/css" href="style.css">
 
@@ -27,12 +27,14 @@
 	setup();
 	function setup() {
 		if (cpf) {
-			cpf.setPinMode('["resetPin"],["setPinMode", "analog", 0, "INPUT"],["setPinMode","digital", 7, "OUTPUT"]')
+			cpf.setPinMode('["resetPin"],["setPinMode", "digital", 7,"DHT11"],["setPinMode", "digital", 5,"INPUT"],["setPinMode","digital", 7, "OUTPUT"]')
 		}
 	}
 	function loop() {
 		if (cpf) {
-			fire = cpf.get("a0");
+			fire = cpf.get("d5");
+			cpf.get("DHT11","d7","dht11temp");
+			cpf.get("DHT11","d7","dht11humi");
 			console.log(fire);
 			if (fire == LOW) {
 				cpf.request('["digitalWrite", 7, 1]');
