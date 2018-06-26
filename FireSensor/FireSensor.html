@@ -7,7 +7,7 @@
 
 </head>
 <body>
-	<div id="title"> Fire Sensing1646 </div>
+	<div id="title"> Fire Sensing1816 </div>
 	<div class="FireSensor">
 		<span>
 			馬達開關
@@ -15,7 +15,12 @@
 		<span id="tf"></span>
 	</div>
 	<div class="firesensor">
+			<span>火</span>
 		<span id="fireA"></span>
+		<span>溫度</span>
+		<span id="tempA"></span>
+		<span>濕度</span>
+		<span id="humiA"></span>
 		<span>
 			<img src="img/FireSensor.png" alt="">;
 		</span>
@@ -24,6 +29,8 @@
 
 <script>
 	var fire;
+	var temp ;
+	var humi ;
 	setup();
 	function setup() {
 		if (cpf) {
@@ -35,7 +42,9 @@
 			fire = cpf.get("d5");
 			document.getElementById("fireA").innerHTML = fire;
 			cpf.get("DHT11","d7","dht11temp");
+			document.getElementById("tempA").innerHTML = temp;
 			cpf.get("DHT11","d7","dht11humi");
+			document.getElementById("humiA").innerHTML = humi;
 			console.log(fire);
 			if (fire == 50) {
 				cpf.request('["digitalWrite", 7, 1]');
