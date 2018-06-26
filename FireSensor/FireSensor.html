@@ -15,10 +15,10 @@
 		<span id="tf"></span>
 	</div>
 	<div class="firesensor">
+		<span id="fireA"></span>
 		<span>
 			<img src="img/FireSensor.png" alt="">;
 		</span>
-		<span id="fire"></span>
 	</div>
 </body>
 
@@ -33,7 +33,7 @@
 	function loop() {
 		if (cpf) {
 			fire = cpf.get("d5");
-			document.getElementById("fire").innerHTML = fire;
+			document.getElementById("fireA").innerHTML = fire;
 			cpf.get("DHT11","d7","dht11temp");
 			cpf.get("DHT11","d7","dht11humi");
 			console.log(fire);
