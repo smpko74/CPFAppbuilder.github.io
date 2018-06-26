@@ -7,7 +7,7 @@
 
 </head>
 <body>
-	<div id="title"> Fire Sensing1627 </div>
+	<div id="title"> Fire Sensing1631 </div>
 	<div class="FireSensor">
 		<span>
 			馬達開關
@@ -37,7 +37,7 @@
 			cpf.get("DHT11","d7","dht11temp");
 			cpf.get("DHT11","d7","dht11humi");
 			console.log(fire);
-			if (fire == LOW) {
+			if (fire == 50) {
 				cpf.request('["digitalWrite", 7, 1]');
 			}
 			else {
