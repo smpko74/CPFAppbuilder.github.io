@@ -53,36 +53,35 @@
 </body>
 
 <script>
-	var fire;
-	var temp;
-	var humi;
-	setup();
+	var fire; //宣告火焰感測值
+	var temp; //宣告溫度值
+	var humi; //宣告濕度值
+	setup(); //呼叫setup()
+	loop(); //呼叫loop()
 	function setup() {
 		if (cpf) {
-			cpf.setPinMode('["resetPin"],["setPinMode", "digital", 7,"DHT11"],["setPinMode", "digital", 5,"INPUT"],["setPinMode","digital", 8, "OUTPUT"]')
+			cpf.setPinMode('["resetPin"],["setPinMode", "digital", 7,"DHT11"],["setPinMode", "digital", 5,"INPUT"],["setPinMode","digital", 8, "OUTPUT"]'); //設定角位
 		}
 	}
 	function loop() {
 		if (cpf) {
-			fire = cpf.get("d5");
-			document.getElementById("fireA").innerHTML = fire;
-			temp = cpf.get("DHT11", "d7", "dht11temp");
-			document.getElementById("tempA").innerHTML = temp;
-			humi = cpf.get("DHT11", "d7", "dht11humi");
-			document.getElementById("humiA").innerHTML = humi;
-			console.log(fire);
-			if (fire == 0 && temp > 30) {
-				cpf.request('["digitalWrite", 8, 1]');
-				document.getElementById("tf").innerHTML = "啟動" ;
+			fire = cpf.get("d5"); //從d5取得火焰感測值
+			document.getElementById("fireA").innerHTML = fire; //傳回火焰感測值顯示
+			temp = cpf.get("DHT11", "d7", "dht11temp"); //從d7取得溫度值
+			document.getElementById("tempA").innerHTML = temp; //傳回溫度值顯示
+			humi = cpf.get("DHT11", "d7", "dht11humi"); //從d7取得濕度值
+			document.getElementById("humiA").innerHTML = humi; //傳回濕度值顯示
+			if (fire == 0 || temp > 30) { //若火焰感測值為0或溫度高於30
+				cpf.request('["digitalWrite", 8, 1]'); // 啟動d8馬達
+				document.getElementById("tf").innerHTML = "啟動";
 			}
 			else {
-				cpf.request('["digitalWrite", 8, 0]');
-				document.getElementById("tf").innerHTML = "關閉" ;
+				cpf.request('["digitalWrite", 8, 0]'); // 關閉馬達 
+				document.getElementById("tf").innerHTML = "關閉";
 			}
 		}
 		setTimeout(loop, 1000);
 	}
-	loop();
 </script>
 
 </html>
