@@ -12,7 +12,7 @@
 <body>
 	<div id="title" class="nav">
 		<h1 class="mx-auto">
-			Fire Sensing1938
+			Fire Sensing2001
 		</h1>
 	</div>
 	<div class="col-md-12">
@@ -71,11 +71,13 @@
 			humi = cpf.get("DHT11", "d7", "dht11humi");
 			document.getElementById("humiA").innerHTML = humi;
 			console.log(fire);
-			if (fire == 0) {
+			if (fire == 0 && temp > 30) {
 				cpf.request('["digitalWrite", 8, 1]');
+				document.getElementById("tf").innerHTML = "啟動" ;
 			}
 			else {
 				cpf.request('["digitalWrite", 8, 0]');
+				document.getElementById("tf").innerHTML = "關閉" ;
 			}
 		}
 		setTimeout(loop, 1000);
