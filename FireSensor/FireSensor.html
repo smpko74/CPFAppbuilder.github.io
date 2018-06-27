@@ -12,7 +12,7 @@
 <body>
 	<div id="title" class="nav">
 		<h1 class="mx-auto">
-			Fire Sensing2001
+			Fire Sensing
 		</h1>
 	</div>
 	<div class="col-md-12">
@@ -71,7 +71,7 @@
 			document.getElementById("tempA").innerHTML = temp; //傳回溫度值顯示
 			humi = cpf.get("DHT11", "d7", "dht11humi"); //從d7取得濕度值
 			document.getElementById("humiA").innerHTML = humi; //傳回濕度值顯示
-			if (fire == 0 || temp > 30) { //若火焰感測值為0或溫度高於30
+			if (fire == 0 || temp > 30) { //若火焰感測值為0或溫度高於
 				cpf.request('["digitalWrite", 8, 1]'); // 啟動d8馬達
 				document.getElementById("tf").innerHTML = "啟動";
 			}
